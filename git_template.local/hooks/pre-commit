@@ -1,0 +1,9 @@
+if [ -f .ruby-style.yml ]; then
+  STYLE_CONFIG="-c .ruby-style.yml"
+elif [ -f $HOME/.ruby-style.yml ]; then
+  STYLE_CONFIG="-c $HOME/.ruby-style.yml"
+else
+  STYLE_CONFIG=""
+fi
+
+rubocop $STYLE_CONFIG `git diff --cached --name-only`
